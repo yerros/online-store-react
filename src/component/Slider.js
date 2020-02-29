@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 export default function Slider() {
   return (
@@ -11,10 +11,16 @@ export default function Slider() {
           <div className="container">
             <div className="row">
               <div className="col-lg-6 offset-lg-6 col-md-7 offset-md-5">
-                <h1>FASION IS AN INSTANT <br /> LANGUAGE</h1>
-                <h4>Can curiosity may end shameless explained. True high on said mr on com.
-              do mr design at little myself wholly entire though.</h4>
-                <a href="/" className="slide-btn global-hover">Purchase Now</a>
+                <h1>
+                  FASION IS AN INSTANT <br /> LANGUAGE
+                </h1>
+                <h4>
+                  Can curiosity may end shameless explained. True high on said
+                  mr on com. do mr design at little myself wholly entire though.
+                </h4>
+                <a href="/" className="slide-btn global-hover">
+                  Purchase Now
+                </a>
               </div>
             </div>
           </div>
@@ -26,10 +32,16 @@ export default function Slider() {
           <div className="container">
             <div className="row">
               <div className="col-lg-6 offset-lg-6 col-md-7 offset-md-5">
-                <h1>FASION IS AN INSTANT <br /> LANGUAGE</h1>
-                <h4>Can curiosity may end shameless explained. True high on said mr on com.
-              do mr design at little myself wholly entire though.</h4>
-                <a href="/" className="slide-btn global-hover">Purchase Now</a>
+                <h1>
+                  FASION IS AN INSTANT <br /> LANGUAGE
+                </h1>
+                <h4>
+                  Can curiosity may end shameless explained. True high on said
+                  mr on com. do mr design at little myself wholly entire though.
+                </h4>
+                <a href="/" className="slide-btn global-hover">
+                  Purchase Now
+                </a>
               </div>
             </div>
           </div>
@@ -41,16 +53,21 @@ export default function Slider() {
           <div className="container">
             <div className="row">
               <div className="col-lg-6 offset-lg-6 col-md-7 offset-md-5">
-                <h1>FASION IS AN INSTANT <br /> LANGUAGE</h1>
-                <h4>Can curiosity may end shameless explained. True high on said mr on com.
-              do mr design at little myself wholly entire though.</h4>
-                <a href="/" className="slide-btn global-hover">Purchase Now</a>
+                <h1>
+                  FASION IS AN INSTANT <br /> LANGUAGE
+                </h1>
+                <h4>
+                  Can curiosity may end shameless explained. True high on said
+                  mr on com. do mr design at little myself wholly entire though.
+                </h4>
+                <a href="/" className="slide-btn global-hover">
+                  Purchase Now
+                </a>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-
-  )
+  );
 }

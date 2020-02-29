@@ -1,6 +1,8 @@
-import React from 'react'
+import React from "react";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
-export default function Header() {
+function Header(props) {
   return (
     <div className="header-area home-2-header">
       <div className="container">
@@ -16,12 +18,21 @@ export default function Header() {
             <div className="responsive_menu" />
             <div className="mainmenu">
               <ul id="nav">
-                <li><a href="/">Home</a></li>
-                <li><a href="/">Shop</a></li>
-                <li><a href="/">Blog</a>
+                <li>
+                  <a href="/">Home</a>
+                </li>
+                <li>
+                  <a href="/">Shop</a>
+                </li>
+                <li>
+                  <a href="/">Blog</a>
                   <ul className="submenu cta">
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a href="single-blog.html">Single Blog</a></li>
+                    <li>
+                      <a href="blog.html">Blog</a>
+                    </li>
+                    <li>
+                      <a href="single-blog.html">Single Blog</a>
+                    </li>
                   </ul>
                 </li>
               </ul>
@@ -29,16 +40,29 @@ export default function Header() {
           </div>
           <div className="col-md-3 col-12">
             <div className="header-right">
-              <span className="search"><i className="fa fa-search" /></span>
+              <span className="search">
+                <i className="fa fa-search" />
+              </span>
               <input type="search" placeholder="Search" />
-              <span className="heart"><i className="fa fa-heart" /></span>
-              <a href="cart.html"><span className="shopping-bag"><i className="fa fa-shopping-bag" /></span></a>
-              <a href="cart.html"><span className="cart">3</span></a>
+              <span className="heart">
+                <i className="fa fa-heart" />
+              </span>
+              <Link to="/cart">
+                <span className="shopping-bag">
+                  <i className="fa fa-shopping-bag" />
+                </span>
+                <span className="cart">{props.cart.length}</span>
+              </Link>
             </div>
           </div>
         </div>
       </div>
     </div>
-
-  )
+  );
 }
+const mapStateToProps = state => {
+  return {
+    cart: state.cart
+  };
+};
+export default connect(mapStateToProps)(Header);

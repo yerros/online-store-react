@@ -1,37 +1,30 @@
-import React, { Component } from 'react'
-import Header from '../component/Header'
-import Slider from '../component/Slider'
-import HomeCategory from '../component/HomeCategory'
-import ProductList from '../component/ProductList'
-import Footer from '../component/Footer'
+import React, { Component } from "react";
+import axios from "axios";
+import Slider from "../component/Slider";
+import HomeCategory from "../component/HomeCategory";
+import ProductList from "../component/ProductList";
+import Layout from "../component/Layout";
+import { BaseUrl } from "../config";
 
-const data = [
-  {
-    title: "Sepatu keren",
-    img: "/assets/images/prod_1.jpg",
-    price: 46
-  },
-  {
-    title: "Sepatu keren",
-    img: "/assets/images/prod_2.jpg",
-    price: 46
-  },
-  {
-    title: "Sepatu keren",
-    img: "/assets/images/prod_3.jpg",
-    price: 46
-  },
-  {
-    title: "Sepatu keren",
-    img: "/assets/images/prod_4.jpg",
-    price: 46
-  },
-]
 export default class Homepage extends Component {
+  constructor() {
+    super();
+    this.state = {
+      products: []
+    };
+  }
+
+  componentDidMount() {
+    this.getProduct();
+  }
+  getProduct() {
+    axios.get(`${BaseUrl}api/product`).then(res => {
+      this.setState({ products: res.data });
+    });
+  }
   render() {
     return (
-      <div>
-        <Header />
+      <Layout>
         <Slider />
         <HomeCategory />
         <div className="product-area cta padding-bottom-100 wow fadeInUp">
@@ -46,14 +39,13 @@ export default class Homepage extends Component {
             <div className="shop-area">
               <div className="container">
                 <div className="row wow fadeInRight">
-                  <ProductList data={data} />
+                  <ProductList data={this.state.products} />
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <Footer />
-      </div>
-    )
+      </Layout>
+    );
   }
 }

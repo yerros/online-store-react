@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import Layout from "../component/Layout";
 import { connect } from "react-redux";
 import { removeCart, totalCart } from "../actions";
-import { BaseUrl, Get, Post } from "../config";
+import { Post } from "../config";
 
 class CartPage extends Component {
   constructor() {
@@ -154,8 +153,8 @@ class CartPage extends Component {
                         {this.state.message}
                       </div>
                     ) : (
-                      <div></div>
-                    )}
+                        <div></div>
+                      )}
                     <input
                       type="text"
                       name="coupon"

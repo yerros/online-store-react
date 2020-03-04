@@ -9,7 +9,7 @@ function Header(props) {
         <div className="row">
           <div className="col-md-2 col-12">
             <div className="logo">
-              <a href="index.html">
+              <a href="/">
                 <img src="/assets/images/home-2-logo.png" alt="" />
               </a>
             </div>
@@ -22,7 +22,7 @@ function Header(props) {
                   <a href="/">Home</a>
                 </li>
                 <li>
-                  <a href="/">Shop</a>
+                  <a href="/my-account">My Account</a>
                 </li>
                 <li>
                   <a href="/">Blog</a>

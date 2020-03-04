@@ -19,6 +19,7 @@ export default class ProductEdit extends Component {
       size: [],
       material: "",
       tags: [],
+      isLoading: false,
       product_image: "",
       alert: null
     };
@@ -33,7 +34,6 @@ export default class ProductEdit extends Component {
   }
   getSingleProduct() {
     Get(`api/product/${this.props.match.params.id}`).then(res => {
-      console.log(res);
       this.setState(res);
     });
   }
@@ -62,12 +62,15 @@ export default class ProductEdit extends Component {
   }
   changeImg = e => {
     e.preventDefault();
+    this.setState({ isLoading: true })
     const img = e.target.files[0];
     const formData = new FormData();
     formData.append("products", img);
     Post("api/product/img-upload", formData).then(res => {
+      console.log(res)
       this.setState({
-        product_image: res.img
+        product_image: res.remote,
+        isLoading: false
       });
     });
   };
@@ -104,7 +107,7 @@ export default class ProductEdit extends Component {
       size,
       material,
       tags,
-      product_image
+      product_image, isLoading
     } = this.state;
     return (
       <Layout>
@@ -247,15 +250,18 @@ export default class ProductEdit extends Component {
                       Product Image
                     </label>
                     <br />
-                    {product_image ? (
-                      <img
-                        className="mb-2 img-fluid img-thumbnail no-border"
-                        src={product_image}
-                        alt=""
-                      />
+                    {isLoading ? (
+                      <div className="spinner-border text-center" role="status">
+                        <span className="sr-only">Loading...</span>
+                      </div>
                     ) : (
-                      <div></div>
-                    )}
+
+                        <img
+                          className="mb-2 img-fluid img-thumbnail no-border"
+                          src={product_image}
+                          alt=""
+                        />
+                      )}
                     <div className="custom-file">
                       <input
                         type="file"

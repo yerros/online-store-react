@@ -22,7 +22,7 @@ function Header(props) {
                   <a href="/">Home</a>
                 </li>
                 <li>
-                  <a href="/my-account">My Account</a>
+                  <a href="/myaccount">My Account</a>
                 </li>
                 <li>
                   <a href="/">Blog</a>

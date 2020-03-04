@@ -14,6 +14,8 @@ class CheckoutPage extends Component {
       isLogin: false,
       courier: [{ name: "jne" }, { name: "tiki" }, { name: "pos" }],
       selectedcourier: "",
+      firstname: '',
+      lastname: '',
       email: "",
       password: "",
       show_paypal: false,
@@ -22,6 +24,7 @@ class CheckoutPage extends Component {
       shipping_method: "",
       payment_method: "",
       ro_province: [],
+      show_login: true,
       ro_city: []
     };
     this.handleChange = this.handleChange.bind(this);
@@ -68,6 +71,23 @@ class CheckoutPage extends Component {
       password: this.state.password
     };
     axios.post(`${BaseUrl}api/user/login`, data).then(res => {
+      this.setState({
+        user: res.data.user
+      });
+      this.props.loginUser(res.data.user);
+    });
+  };
+
+  // Register
+  handleRegister = e => {
+    e.preventDefault();
+    const data = {
+      firstname: this.state.firstname,
+      lastname: this.state.lastname,
+      email: this.state.email,
+      password: this.state.password
+    };
+    axios.post(`${BaseUrl}api/user/register`, data).then(res => {
       this.setState({
         user: res.data.user
       });
@@ -327,8 +347,8 @@ class CheckoutPage extends Component {
                             <span>Rp. {this.state.shipping_cost}</span>
                           </div>
                         ) : (
-                          <div></div>
-                        )}
+                            <div></div>
+                          )}
                       </li>
                       <li className="border-cta"></li>
                       <li>
@@ -378,7 +398,7 @@ class CheckoutPage extends Component {
                             onSuccess={(details, data) => {
                               alert(
                                 "Transaction completed by " +
-                                  details.payer.name.given_name
+                                details.payer.name.given_name
                               );
                               return axios
                                 .get(
@@ -395,36 +415,93 @@ class CheckoutPage extends Component {
                           />
                         </div>
                       ) : (
-                        <button
-                          onClick={this.submitOrder}
-                          className="btn btn-dark mb2"
-                        >
-                          Place Order
+                          <button
+                            onClick={this.submitOrder}
+                            className="btn btn-dark mb2"
+                          >
+                            Place Order
                         </button>
-                      )}
+                        )}
                     </div>
                   </div>
                 </div>
               </div>
             ) : (
-              <div className="row">
-                <div className="col-md-12">
-                  <div className="checkout-header">
-                    <h4>
-                      <i className="fa fa-users" /> Returning customer?{" "}
-                      <a href="/">Click here to login</a>
-                    </h4>
-                  </div>
-                  <div className="checkout-content">
-                    <p>
-                      If you have shopped with us before, please enter your
-                      details in the boxes below.
+                <div className="row">
+                  <div className="col-md-12">
+                    <div className="checkout-header">
+                      <h4>
+                        <i className="fa fa-users" /> New customer?
+                      <button className="btn btn-link" onClick={e => this.setState({ show_login: !this.state.show_login })}>Click here to Register</button>
+                      </h4>
+                    </div>
+                    {this.state.show_login ? (<div className="checkout-content">
+                      <p>
+                        If you have shopped with us before, please enter your
+                        details in the boxes below.
                       <br /> If you are a new customer, please proceed to the
-                      Billing &amp; Shipping section.
+                                                        Billing &amp; Shipping section.
                     </p>
-                    <div className="checkout-top-form">
+                      <div className="checkout-top-form">
+                        <form>
+                          <div className="row">
+                            <div className="col-md-6">
+                              <label htmlFor="ccds">Username or email *</label>
+                              <input
+                                type="email"
+                                name="email"
+                                value={this.state.email}
+                                onChange={e =>
+                                  this.setState({ email: e.target.value })
+                                }
+                              />
+                            </div>
+                            <div className="col-md-6">
+                              <label htmlFor="item2">Password *</label>
+                              <input
+                                type="password"
+                                name="password"
+                                value={this.state.password}
+                                onChange={e =>
+                                  this.setState({ password: e.target.value })
+                                }
+                              />
+                            </div>
+                          </div>
+                          <button
+                            onClick={this.handleLogin}
+                            className="btn btn-dark mr-2"
+                          >
+                            Login
+                        </button>
+                        </form>
+                      </div>
+                    </div>
+                    ) : (<div className='checkout-content'><div className="checkout-top-form">
                       <form>
                         <div className="row">
+                          <div className="col-md-6">
+                            <label htmlFor="ccds">First Name *</label>
+                            <input
+                              type="email"
+                              name="firstname"
+                              value={this.state.firstname}
+                              onChange={e =>
+                                this.setState({ firstname: e.target.value })
+                              }
+                            />
+                          </div>
+                          <div className="col-md-6">
+                            <label htmlFor="ccds">Last Name *</label>
+                            <input
+                              type="email"
+                              name="lastname"
+                              value={this.state.lastname}
+                              onChange={e =>
+                                this.setState({ lastname: e.target.value })
+                              }
+                            />
+                          </div>
                           <div className="col-md-6">
                             <label htmlFor="ccds">Username or email *</label>
                             <input
@@ -449,17 +526,17 @@ class CheckoutPage extends Component {
                           </div>
                         </div>
                         <button
-                          onClick={this.handleLogin}
+                          onClick={this.handleRegister}
                           className="btn btn-dark mr-2"
                         >
-                          Login
-                        </button>
+                          Register
+                    </button>
                       </form>
                     </div>
+                    </div>)}
                   </div>
                 </div>
-              </div>
-            )}
+              )}
           </div>
         </div>
       </Layout>

@@ -79,7 +79,6 @@ export default class Customers extends Component {
     this.getCategories();
   }
   render() {
-    const { category_name, category_description } = this.state;
     return (
       <Layout>
         <section className="content">

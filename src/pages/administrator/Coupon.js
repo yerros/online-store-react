@@ -91,7 +91,6 @@ export default class Coupon extends Component {
   }
   render() {
     const { coupon_code, discount, expiredIn } = this.state;
-    const today = moment(expiredIn).format("L");
     return (
       <Layout>
         <section className="content">

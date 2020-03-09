@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Layout from "../component/Layout";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { BaseUrl } from "../config";
 import { addCart } from "../actions";
@@ -115,9 +116,9 @@ class ProductDetail extends Component {
                     >
                       Add To Cart
                     </button>
-                    <a href="/" className="addcart cta">
-                      <i className="fa fa-heart-o" />
-                    </a>
+                    <Link to="/checkout" className="btn btn-outline-dark ml-2">
+                      Process Checkout
+                    </Link>
                   </div>
                 </div>
               </div>

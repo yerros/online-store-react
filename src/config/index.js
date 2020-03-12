@@ -6,7 +6,7 @@ const setHeader = () => {
   };
 };
 
-export const BaseUrl = "http://localhost:5000/";
+export const BaseUrl = "https://backend-onlinestore-100.herokuapp.com/";
 
 export const Post = (path, body) => {
   return new Promise((resolve, reject) => {
